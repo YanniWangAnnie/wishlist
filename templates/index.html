@@ -19,14 +19,16 @@
         <tbody>
             {% for item in items %}
             <tr>
-                <td>item.date</td>
-                <td>item.title</td>
-                <td>item.description</td>
-                <td>item.state</td>
+                <td>{{ item.date }}</td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.state }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    <br>
+    <a href="{{url_for('add_item')}}">Add wish</a>
 
 </body>
 
