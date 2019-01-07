@@ -23,7 +23,7 @@ def index():
     return render_template('index.html', items=items)
     
 @app.route('/add_item')
-def add_items():
+def add_item():
     return render_template("add_item.html")
 
 @app.route('/post_item',methods=['POST'])
