@@ -39,10 +39,15 @@ def post_item():
     else:
         return 'wrong auth token'
 
-@app.route('/close_item',methods=['POST'])
+@app.route('/close_item')
 def close_item():
+    item_id = request.args.get('item_id')
+    return render_template('close_auth.html', item_id=item_id)
+
+@app.route('/validate_and_close_item',methods=['POST'])
+def validate_and_close_item():
     if request.form['auth'] == os.environ['AUTH']:
-        item_id = request.form('item_id_name')
+        item_id = int(request.form['item_id'])
         item = Item.query.filter(Item.item_id==item_id).one()
         item.state='closed'
         db.session.add(item)
