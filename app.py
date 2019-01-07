@@ -35,7 +35,19 @@ def post_item():
         item.state='active'
         db.session.add(item)
         db.session.commit()
-        return 'success'
+        return 'add item success'
+    else:
+        return 'wrong auth token'
+
+@app.route('/close_item',methods=['POST'])
+def close_item():
+    if request.form['auth'] == os.environ['AUTH']:
+        item_id = request.args.get('item_id')
+        item = Item.query.filter(Item.item_id==item_id).one()
+        item.state='closed'
+        db.session.add(item)
+        db.session.commit()
+        return 'close item success'
     else:
         return 'wrong auth token'
 
