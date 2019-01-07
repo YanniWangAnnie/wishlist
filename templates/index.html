@@ -14,6 +14,7 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Status</th>
+                <th>Close</th>
             </tr>
         </thead>
         <tbody>
@@ -23,7 +24,14 @@
                 <td>{{ item.title }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{ item.state }}</td>
-                <td><a href="{{url_for('close_item', item_id=item.item_id)}}"></a>{{ item.state }}</td>
+                <td>
+                    <form method="post" action="/close_item">
+                        <label>Auth Token:</label>
+                        <input id="aid" name="auth" type="text" />
+                        <input type="hidden" id="item_id" name="item_id_name" value={{ item.item_id }}>
+                        <input type="submit" />
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

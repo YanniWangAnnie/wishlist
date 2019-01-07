@@ -42,7 +42,7 @@ def post_item():
 @app.route('/close_item',methods=['POST'])
 def close_item():
     if request.form['auth'] == os.environ['AUTH']:
-        item_id = request.args.get('item_id')
+        item_id = request.form('item_id_name')
         item = Item.query.filter(Item.item_id==item_id).one()
         item.state='closed'
         db.session.add(item)
